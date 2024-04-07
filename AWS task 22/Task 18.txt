@@ -1,0 +1,15 @@
+18.create a vpc with two public subnets and sigle subnet which is not associated with single route table an create a instance and implent endpoint in that single instance
+
+steps :-
+1] Create vpc and provide the CIDR block
+2] Create 2 public subnets, provide ig, select the vpc, set availability zone
+3] Create 1 private subnet, choose vpc
+4] Launch a jump-server, select a vpc, select public subnet, select AZ 
+5] Launch a private instance with private subnet and it’s vpc
+6] Now create endpoint, from VPC service
+7] Provide name
+8] Select category as ‘ec2 instance connect endpoint’
+9] Select your vpc
+10] Select the security group
+11] And now select the subnet where to want to bulid connection of endpoint
+12] Take ssh of private instance from the jump-server

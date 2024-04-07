@@ -1,0 +1,42 @@
+11. loadbalancer with log
+
+steps :- 1] Log in to Aws consol.
+2] Go to search and select EC2 Service.
+3] name the ec2 instance 
+4] select aws amezon image as AMI
+5] select t2.micro as instance type
+6] select the key pair 
+7] select default vpc 
+8] select create vpc and allow ssh and httpd
+9] select advance setting add the user data 
+		#!/bin/bash
+		sudo yum update -y
+		sudo yum install httpd -y
+		sudo systemctl start httpd 
+		sudo systemctl enable httpd 
+		sudo echo " This is my apache server " > /var/www/html/index.html
+10] go to target group.
+11] create the target group and add the instance.
+12] create the loadbalancer and attach the target group and create the loadbalancer 
+13] go to s3 bucket and cerate the s3 bucket with default setting to store the log
+14] go to the permission setting of s3 bucket 
+15] and go to policy generator and generate the policy
+		{
+  "Id": "Policy1706529449077",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1706529447241",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::loadbalancer-log-us-east-1-125932985618/*",
+      "Principal": "*"
+    }
+  ]
+}
+16] update the policy in the bucket policy 
+17] go to the load balancer and go to the settings 
+18] enable the access logs 
+19] give the url of the s3 bucket and store the logs

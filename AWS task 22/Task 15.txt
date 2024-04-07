@@ -1,0 +1,26 @@
+15. dynamo db create table serial no student name address mobile no export it to s3 and create csv file in your locals
+
+steps :-
+
+1] goto dynamodb.
+2] create table in that.
+3] put serial no as a partion key.
+4] now goto explore items, and add attributes to it.
+5] after adding attributes, click on export it to s3.
+6] provide name of your s3 bucket in which you are exporting.
+7] the table which will be shown in the s3 bucket which you have exported from dynamodb.
+8] Now, import the product.catalog table from s3 to dynamodb
+9] create instance with all the default settings.
+10] select the instance, goto actions, security, modify IAM roles.
+11] create one IAM role with full access of dynamodb and attach it to the instance.
+12] connect it
+13] run command “aws dynamodb list-tables” you will see the tables created
+14] goto dynamodb and create one table with the same name which you have copied to s3.
+15] copy the URL “ProductCatalog” which you want to import in dynamodb
+16] goto terminal, go inside tmp/ and download the file by wget <link>
+17] run command “aws dynamodb batch-write-item –request-items file:///tmp/ProductCatalog.json --region us-west-2”
+18] you will the file imported into dynamodb of ProductCatalog.
+
+
+
+

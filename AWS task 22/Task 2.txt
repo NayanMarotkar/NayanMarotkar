@@ -1,0 +1,22 @@
+we have to create ami (which has already nginx hosted) without passing userdata.
+
+steps :-
+1] Log in to Aws consol.
+2] Go to search and select EC2 Service.
+3] select create instance.
+4] name instance 
+5] select ubuntu image as AMI
+6] select t2.micro as instance type.
+7] select key pair
+8] select default vpc
+9] select create new security group and give access of ssh and http to secutity group.
+10] select advance setting and user data 
+		#!/bin/bash
+		sudo apt update -y
+		sudo apt install nginx -y
+		sudo systemctl start nginx 
+		sudo systemctl enable nginx
+11] click on create instance and launch instance.
+12] select the created instance and click on action and image setting
+13] click on create image.
+14] use the image created using above instance and launch new instance.

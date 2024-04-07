@@ -1,0 +1,37 @@
+create autoscaling which cool down time 5 minutes.
+
+Steps :-
+
+1] Log in to Aws consol.
+2] Go to search and select EC2 Service.
+3] select security group.
+4] create security group for the auto scaling group and add inbound rule and allow ssh and http.
+5] Next go to auto scaling group.
+6] Select create auto scaling group and name the auto scaling group.
+7] select launch templete.
+8] create templete.
+	a] name the templete (demo)
+	b] provide  templete virsion 
+	c] select aws amezon linux image 
+	d] selete instance type as t2.micro.
+	e] give key pair
+	f] select security group SG-ASG which previously created 
+	g] select advance setting and give user data to launch apache http server.
+		#!/bin/bash
+		sudo yum update -y
+		sudo yum install httpd -y
+		sudo systemctl start httpd 
+		sudo systemctl enable httpd 
+		sudo echo " This is my apache server " > /var/www/html/index.html
+		sudo systemctl restart httpd 
+	h] select on create templete and create the templete.
+9] select the templete created in the auto scaling group.
+10] select next.
+11] select default vpc and select all availability zone subnet in network setting. 
+12] select next.
+13] select no load balancer.
+14] select desired capicity as 1 min. capicity as 1 and max. capicity as 3.
+15] select next and click on create auto scaling group.
+16] select created load balancer go to detail section.
+17] select advance configuration and edit it and change the cooldown time to 5 min.
+

@@ -1,0 +1,18 @@
+ load balancer with autoscaling with the rule 40-40-20 weighted policy
+steps :-
+
+1] Create auto scaling group with loadbalancer 
+2] Certain amount of instances will already be on your ec2 service page
+3] repeat the same process you do to create record for 70/30 ratio
+4] Here, create the ratio of 40/40/20
+5] Three records will be created, choose the weighted policy and define percentages in each record
+	(you will see your ip will be changing as per the weighted ratio)
+
+	Provide this userdata in both of your template
+		#!/bin/bash
+		sudo yum update -y
+		sudo yum install httpd -y
+		sudo systemctl enable httpd
+		sudo systemctl start httpd
+		sudo echo "this is $(hostname)"> /var/www/html/index.html
+		sudo systemctl restart httpd

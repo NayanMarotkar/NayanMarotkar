@@ -1,0 +1,43 @@
+ implement extended web server on load balancer(path based routing in load balancer).
+
+steps :-
+1] go to vpc create vpc and name it alb.
+2] create internet gateway and attach it to vpc
+3] go to subnet and create a 2 public subnet for loadbalancer and name it
+5] go to route table and create route table for public subnet 
+6] and add route 0.0.0.0 and route it to internet gateway.
+7] associate the route table with 2 public subnet
+8] create other two public subnet for ec2 
+9] again create route table for ec2 and do the same cnfig we did above
+10] associate the route table with subnet created for ec2
+11] go to ec2 and launch first ec2 instance in first subnet and add user data
+		#!/bin/bash
+		sudo yum update -y
+		sudo yum install httpd -y
+		sudo systemctl start httpd 
+		sudo systemctl enable httpd 
+		sudo echo " This is my apache server " > /var/www/html/mobile/index.html
+12] again launch ec2 instance in secnd subnet and add user data 
+		#!/bin/bash
+		sudo yum update -y
+		sudo yum install httpd -y
+		sudo systemctl start httpd 
+		sudo systemctl enable httpd 
+		sudo echo " This is my apache server " > /var/www/html/laptop/index.html
+
+13] go to target group and create target group name it tg-mob port 80 path is /mobile/index.html and create.
+14] add instance 1 in tg-mob target group 
+15] create second target group and name it to tg-lap port 80 path /laptop/index.html and create it
+16] add second instance to tg-lap 
+17] go to load balancer and create application load balancer name it
+18] scheme is internet facing 
+19] choose two subnet that is attach to ec2 instance 
+20] create security group for ALB allow port 80 and source 0.0.0.0 
+21] route traffic to traget group tg-mob and create it
+22] go to alb select listner and edit rule
+23] insert rule if path = /mobile* then forward to tg-mob
+24] and add another rule if path =/laptop* then forward to tg-lap save it
+25] and hit the dns in search bar 
+  
+
+

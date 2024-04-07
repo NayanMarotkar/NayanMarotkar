@@ -1,0 +1,20 @@
+implement peering connection between 4 vpc
+for this you need transit gateway(for connecting 4 vpcs)
+
+steps :-
+
+1] create 4 vpcs with their CIDR blocks and their subnets. (Main vpc, vpc1, vpc2, vpc3)
+2] associate all the 4 sbnets in subnet association.
+3] then goto transit gateway and create a gateway by providing any name.
+4] then create transit gateway attachments.
+***you have to create 4 attachments for each subnets and select the particular subnet***
+Eg. If you are creating main attachment then provide the vpc which you have created for main connection. Do the same process for every attachments
+5] now create 4 instances with the created vpcs and subnets.
+6] allow ICMP traffic for all of the instances.
+7] you have to give internet gateway to the main vpc.
+8] goto each route table and add the CIDR block of the vpcs.
+(eg: in the main vpc add CIDR of the rest of the vpc CIDR blocks with the target hitting the attachments[TRANSIT GATEWAY])
+***DO THE SAME PROCESS FOR EVERY VPCs EXCLUDING THE CIDR OF THE ACTUAL VPC YOU ARE WORKING ON***
+9] connect the main instance- and try to ping the private instances of every vpcs.
+10] you can ping all of them
+11] to cross-verify take ssh of any of the instance and then try to ping the main instance, you can do that too 

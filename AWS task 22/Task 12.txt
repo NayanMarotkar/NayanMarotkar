@@ -1,0 +1,18 @@
+12. s3 with cloudfront bucket should be private
+
+steps  :-
+1] create private s3 bucket
+2] add website templete from online 
+3] go to cloud front
+4] create distribution 
+5] give origin as s3 bucket
+6] create origin control setting
+7] desable web application firewall 
+8] and create distribution 
+9] copy the bucket policy which cloud front generated
+10] go to s3 bucket
+11] go to permission 
+12] edit bucket policy 
+13] past the copied policy and update it
+14] go to cloud front distribution
+15] copy cloud front and and hit in the search bar

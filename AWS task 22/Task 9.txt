@@ -1,0 +1,24 @@
+ load balancer with autoscaling with the rule 70-30 weighted policy
+
+steps :-
+1] create one launch template, provide essential data 
+2] goto Auto-scaling-group, create it
+3] select the template
+4] choose vpc and subnets
+5] three option will be visible 
+	(no load balancer, attach to a new loadbalancer, create a new load balancer)
+6] choose create a new load balancer, create new target group too
+7] provide the essential number of desired, minimum and maximum instances
+8] after this your asg with loadbalancer will be created
+9] automatically certain number of instances will also be created
+10] now goto route 53, create one hosted zone
+11] click on the name servers, and paste it on your personal domain
+	(replace it with hostinger      nameservers) 
+12] now create records, while creating it provide the sub-domain name, A record type, public-ip address
+13] choose the weighted policy in the policy section
+14] define the percentage of 70% in the first record
+15] create one more record will all the required, and define the percentage of the record as 30%
+16 copy the sub-domain name and hit on the web-server, you will see your ip changing and the output changing
+	(here, every time I am refreshing it the output which is This is instance 1, This is instance 2 is changing) 
+
+

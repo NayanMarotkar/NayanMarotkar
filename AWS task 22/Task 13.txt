@@ -1,0 +1,36 @@
+implement cloudfront on load balancer
+steps :-
+1] Log in to Aws consol.
+2] Go to search and select EC2 Service.
+3] select security group.
+4] create security group for application loadbalancer and allow http all traffic.
+5] create security group for the auto scaling group and add inbound rule and allow ssh and all traffic from load balancer.
+6] Next go to auto scaling group.
+7] Select create auto scaling group and name the auto scaling group.
+8] select launch templete.
+9] create templete.
+	a] name the templete (demo)
+	b] provide  templete virsion 
+	c] select ubuntu image on which nginx is installed 
+	d] selete instance type as t2.micro.
+	e] give key pair
+	f] select security group SG-ASG which previously created 
+	h] select on create templete and create the templete.
+10] select the templete created in the auto scaling group.
+11] select next.
+12] select default vpc and select all availability zone subnet in network setting. 
+13] select next.
+14] select attach to a new load balancer.
+15] give the name to ALB and select loadbalancer scheme as internet facing.
+16] select new target group it will automatically create targate group for loadbalancer.
+17] select desired capicity as 1 min. capicity as 1 and max. capicity as 3.
+18] select next and click on create auto scaling group.
+19] go to the loadbalancer and change the security group setting and add security group created for application load balancer.
+20] go to cloud front
+21] create distribution 
+22] give origin as load balancer 
+23] create cache policy and attach to it
+24] disable web application firewall 
+25] and create distribution
+26] copy the dns of the cloud front dns and hit it to the search bar
+ 

@@ -1,0 +1,30 @@
+19. create vpc with 4 subnets 2 public 2 private create a jumpserver launch a private instance mount efs on that subnet deploy tomcat on efs on /mnt
+
+steps :-
+
+1] Create a vpc, with 4 subnets
+2] 2 public and in 2 private(with ig and nat) (one public and one private in 1 zone)
+3] Create 4 instances(sg 22, 80, 8080, 2049, 3306)
+4] Two jump-servers and two web-servers with their respective vpc and subnets
+5] Create efs
+6] Provide the vpc
+7] Take ssh of both the private instances with the help of the bastion-host(1,2)
+8] https://docs.aws.amazon.com/efs/latest/ug/installing-amazon-efs-utils.html
+9] Use this document to perform the configurations
+10] after doing all the configurations, install 
+11] yum install python-3pip –y
+12] pip install botocore(here, you might be inside efs-utils/)
+13] create one directory of efs/ in efs-utils/
+14] now copy the link which is generated in your efs and put the destination as /mnt(mount via dns)
+15] do the same process in the next private ip (but do ssh of that with the help of jump server)
+16] both of the private ip’s will be connected to each other
+17] if any of the file is created in anyone of the efs/ folder than automatically it will be visible in the other private ip’s efs/ folder
+18] after doing this, install tomcat in anyone of the private ip
+19] extract the tar.gr file
+20] paste the student.war file in webapps/
+21] start/stop the catalina
+22] give necessary permissions
+23] copy the public ip and hit it you tomcat will be accessible after that
+24] your student page will not be visible after that
+25] write ip:8080/student in web-server
+

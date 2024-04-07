@@ -1,0 +1,32 @@
+20. implemt nginx as a load balancer implent nginx as a proxy server
+
+steps :-
+1] first go to vpc select vpc and more 
+2] create vpc with 1 public subnet and 1 private subnet and nat gateway attach to it 
+3] internet gateway and route table are auto created and associated
+4] click on create vpc 
+5] go to security group and create security group and allow all traffic. (for demo only)
+6] go to EC2 and click on launch templete 
+7] create instance name my-web-server in private subnet and add below user data to launch apache server and launch instance 
+	#!/bin/bash 
+	sudo yum update -y
+	sudo yum install httpd -y
+	sudo systemctl start httpd
+	sudo systemctl enable httpd 
+	echo " This is my apache server" > /var/www/html/index.html 
+8] again launch second instance in public subnet 
+9] connect to the instance which is created in public subnet
+10] update the instance
+11] and install nginx on it
+12] access the private instance on public instance using ssh 
+12] to access private instance copy the key pair which we selected when we created te instance 
+13] past the key pair in instance and give "400" permission to file (command : chmod 400 key.pem)
+14] use command "ssh -i key.pem ec2-user@ ip-addr" to connect to private instance 
+14] use 'curl localhost' to see if the server are launched or not
+14] change the port of server from 80 to 8080 ( command : cd /etc/http/conf/httpd.conf)
+16] edit listen 80  to listen 8080
+17] go back to instance in which nginx is configer 
+18] go to file "cd /etc/nginx/sites-available/default" and edit location 
+19] go to location block and add " proxy_pass http://ip-of-apache-server:8080;" and save it and reload nginx
+20] copy public ip of nginx instance and hit in the search bar and see nginx works as loadbalancer
+

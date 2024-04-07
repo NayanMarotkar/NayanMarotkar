@@ -1,0 +1,37 @@
+16. launch a rds create two users with the name sant a and banta give to access of grud to santa and provide select grant create database student database create 10 students primary id serial no student name address mobile no 
+
+steps :-
+1] Goto RDS
+2] Select standard create
+3] Select engine as Mariadb
+4] Provide username and password
+5] Provide instance type
+6] Select vpc
+7] Choose sg
+8] Create initial database name as student_info
+9] Then, create one instance with all the default settings(in sg provide 22, 3306, 8080, 2049, 80)
+10] Yum install mariadb*
+11] Wget and install tomcat from web-server
+12] Tar –xvf <link of tomcat>
+13] Mv apache/ tomcat
+14] cd tomcat/
+15] put the connector.jar file in the lib/
+16] and make changes in the conf/ file(vim context.xml)
+17] start/stop the catalina in bin/
+18] and provide essential commands to accqire solutions.
+19] Run command mysql -h database-of-santa-banta.c3y06s4sqcgm.eu-west-1.rds.amazonaws.com -u admin –p admin1234
+20] Create database student_info;(your database will be created)
+21] Use student_info;(you will go inside the database)
+22] CREATE TABLE students (
+23]	    id SERIAL PRIMARY KEY,
+24]	    student_name VARCHAR(255),
+25]	    address VARCHAR(255),
+26]	    mobile_no VARCHAR(15)
+27](your table will be created with the name students)
+28] CREATE USER 'Santa'@'localhost' IDENTIFIED BY 'sanat1';	
+29] CREATE USER 'Banta'@'localhost' IDENTIFIED BY 'banta1';    (create users santa and banta)
+30] GRANT ALL PRIVILEGES ON student_info TO 'Santa'@'localhost';   (grant priviledges to santa into a database)
+31] GRANT SELECT, INSERT, UPDATE, DELETE ON students TO 'Santa'@'localhost';   (grant more privilidges to santa in a table)
+32] select * from students;      (use this data for viewing your data in the table)
+33] SELECT User, Host FROM mysql.user;         (use this command for viewing the users you created inside the terminal)
+

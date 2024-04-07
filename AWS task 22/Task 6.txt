@@ -1,0 +1,22 @@
+implement bluegreen deployement model
+
+steps :-
+
+1] create mariadb database in rds.
+2] create instance and install mariadb in it 
+3] set up ec2 connection with database 
+4] use database end point to connect it to the instance 
+5] use command mysql -h "end-point" -u admin -ppass123
+6] enter command to check the version of the mariadb database (command :- select version();)
+7] go to rds select the database we created 
+8] click on the action and select blue-green deployment 
+9] this will replicate the database with updated version with name green database
+10] go to ec2 instance and run the same sql command we run previously with green database edn point
+11] check the version of the mariadb database it will be updated version 
+12] after the replication is completed go to the rds and select the blu-green option between the two databases.
+13] click on action and select the switch over to change server it will take some time.
+14] after the switch over is complete the blue database will change to green and green fatabse will change to blue.
+15] then after this launch two instance one will be running on older version and other will be running on the new version.
+16] to distribute the traffic add two instances to the target group.
+17] attach the target group to the load balancer.
+18] once  the new version will start reciving traffic and working in stable condition we can remove the older version and send the 100% traffic to new server.
